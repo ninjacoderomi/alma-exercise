@@ -4,8 +4,8 @@
 
 1. **Clone the repository:**
    ```sh
-   git clone <repository-url>
-   cd tryalma-exercise
+   git clone git@github.com:ninjacoderomi/alma-exercise.git
+   cd alma-exercise
    ```
 
 2. **Install dependencies:**
@@ -14,52 +14,37 @@
    ```
 
 3. **Set up environment variables:**
-   Create a `.env` file in the root directory and add the necessary environment variables. Refer to `.env.example` for the required variables.
+   copy the .env.local file provided in the mail to root directory
 
 4. **Run the project:**
    ```sh
-   npm start
+   npm dev
    ```
+   Server should start at port 3000, open `http://localhost:3000`
+ ## Architecture
+  * Project uses a basic i18n setup
+  * [zustand](https://zustand.docs.pmnd.rs/getting-started/introduction) for state mgmt.  
+  * [Auth0](https://auth0.com/) for login and authorization.
+  * Uses JSON Form, material-ui and tailwind-css
+ 
+## Routes Exposed
+1. **Home** `http://localhost:3000/` 
+1. **Leads** `http://localhost:3000/leads` 
+1. **Submit Case** `http://localhost:3000/submit-case` 
+ Due to localization, it might redirect you to a `/en` prefixed route
+### API
+ There are two API routes,
+ 1. `/api/auth/[auth]` which is used for Auth0 related setup.
+ 1. `/api/leads` is single module maintaining all the data in memory. It exposes handlers for following HTTP methods
+   * **GET** for getting all the leads
+   * **PUT** for adding a new lead, used in `/submit-case` page
+   * **POST** for modifying the status of a lead
 
-## API Setup
+All the API do server side validations as well
 
-1. **Start the API server:**
-   ```sh
-   npm run api
-   ```
+## Incomplete Functionality
+1. File upload
+1. Differences between mocks and actual implementation
 
-2. **API Endpoints:**
-   - `GET /api/resource` - Fetches a list of resources.
-   - `POST /api/resource` - Creates a new resource.
-   - `PUT /api/resource/:id` - Updates a resource by ID.
-   - `DELETE /api/resource/:id` - Deletes a resource by ID.
 
-## Directory Structure
 
-```
-tryalma-exercise/
-├── src/
-│   ├── api/
-│   │   ├── controllers/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   └── services/
-│   ├── components/
-│   ├── pages/
-│   ├── styles/
-│   └── utils/
-├── .env
-├── .env.example
-├── package.json
-├── README.md
-└── ...
-```
-
-- **src/api/controllers/**: Contains the API controllers.
-- **src/api/models/**: Contains the database models.
-- **src/api/routes/**: Contains the API route definitions.
-- **src/api/services/**: Contains the business logic and services.
-- **src/components/**: Contains reusable React components.
-- **src/pages/**: Contains the page components.
-- **src/styles/**: Contains the styling files.
-- **src/utils/**: Contains utility functions.
