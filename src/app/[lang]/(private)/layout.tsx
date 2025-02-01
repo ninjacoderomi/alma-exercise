@@ -1,42 +1,50 @@
 "use client";
 import React, { ReactNode } from "react";
-import { useTranslation } from "react-i18next";
-import { useState } from "react";
-import { BREAKPOINTS } from "@/constants";
+import { useState, useEffect } from "react";
+import { BREAKPOINTS, LOGO_FULL } from "@/constants";
+import MenuLink from "@/app/components/MenuLink";
+import { useTranslations } from "@/providers/translations-provider.client";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { redirect } from "next/navigation";
 
-const Layout: React.FC = ({ children }: { children: ReactNode }) => {
-  const { t, i18n } = useTranslation();
+const Layout: React.FC<{ children: ReactNode }> = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
+  const { t } = useTranslations();
   const [isMenuOpen, setMenuOpen] = useState<boolean>(
     window.innerWidth >= BREAKPOINTS.md
   );
+  const { user, isLoading } = useUser();
 
-  const handleMenu = () => {
-    setMenuOpen(!isMenuOpen);
-  };
-
+  useEffect(() => {
+    if (!isLoading && !user?.email) {
+      redirect("/api/auth/login");
+    }
+  }, [user, isLoading]);
   return (
-    <>
-      <header className="p-5 bg-gray-200">
-        <button onClick={handleMenu}>{t("Menu")}</button>
-      </header>
+    <main className="flex flex-row h-screen drop-shadow-[-100vh_-100vh_100px_rgba(255,255,0,0.35)]">
       <nav
-        className={`w-52 p-5 bg-gray-200 ${isMenuOpen ? "block" : "hidden"}`}
+        className={`w-52 p-5  ${
+          isMenuOpen ? "block" : "hidden"
+        } relative h-screen flex flex-col border-r border-gray-200`}
       >
-        <ul>
-          <li>
-            <a href="#link1">{t("Leads")}</a>
-          </li>
-          <li>
-            <a href="#link2">{t("Settings")}</a>
-          </li>
+        <div className="">
+          <img src={LOGO_FULL} alt="logo" className="w-20 mb-10" />
+        </div>
+        <ul className="">
+          <MenuLink href="/leads" label={t("Leads")} />
+          <MenuLink href="/settings" label={t("Settings")} />
+          <MenuLink
+            href="/profile"
+            label={user?.name || t("Profile")}
+            className="absolute bottom-[1rem] overflow-hidden text-overflow-ellipsis whitespace-nowrap max-w-[100px] block font-bold"
+          />
         </ul>
       </nav>
-      <main className="flex flex-col h-screen">
-        <div style={{ display: "flex" }}>
-          <main style={{ flex: 1, padding: "20px" }}>{children}</main>
-        </div>
-      </main>
-    </>
+      <main className="w-full flex p-5">{children}</main>
+    </main>
   );
 };
 

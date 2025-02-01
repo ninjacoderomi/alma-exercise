@@ -1,22 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project Setup and API Instructions
 
-## Getting Started
+## Project Setup
 
-First, run the development server:
+1. **Clone the repository:**
+   ```sh
+   git clone <repository-url>
+   cd tryalma-exercise
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+
+3. **Set up environment variables:**
+   Create a `.env` file in the root directory and add the necessary environment variables. Refer to `.env.example` for the required variables.
+
+4. **Run the project:**
+   ```sh
+   npm start
+   ```
+
+## API Setup
+
+1. **Start the API server:**
+   ```sh
+   npm run api
+   ```
+
+2. **API Endpoints:**
+   - `GET /api/resource` - Fetches a list of resources.
+   - `POST /api/resource` - Creates a new resource.
+   - `PUT /api/resource/:id` - Updates a resource by ID.
+   - `DELETE /api/resource/:id` - Deletes a resource by ID.
+
+## Directory Structure
+
+```
+tryalma-exercise/
+├── src/
+│   ├── api/
+│   │   ├── controllers/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   └── services/
+│   ├── components/
+│   ├── pages/
+│   ├── styles/
+│   └── utils/
+├── .env
+├── .env.example
+├── package.json
+├── README.md
+└── ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
+- **src/api/controllers/**: Contains the API controllers.
+- **src/api/models/**: Contains the database models.
+- **src/api/routes/**: Contains the API route definitions.
+- **src/api/services/**: Contains the business logic and services.
+- **src/components/**: Contains reusable React components.
+- **src/pages/**: Contains the page components.
+- **src/styles/**: Contains the styling files.
+- **src/utils/**: Contains utility functions.

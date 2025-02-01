@@ -13,16 +13,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-      <UserProvider>
-        {children}
-        </UserProvider>
-  );
+  return <>{children}</>;
 }

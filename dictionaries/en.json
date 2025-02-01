@@ -1,4 +1,9 @@
 {
-  "submitCase.title": "Submit a case",
-  "submitCase.description": "Submit a case to the support team"
+  "submitCase.title": "Get An Assessment of Your Immigration Case",
+  "submitCase.want-to-understand": "Want to understand your visa options? ",
+  "submitCase.fill-out-form": "Submit the form below and our team of experienced attorneys will review your information and send a preliminary assessment of your case based on your goals."
+  , "submitCase.thank-you": "Thank You",
+  "submitCase.submitted": "Your information was submitted to our team of immigration attorneys. Expect an email from hello@tryalma.ai",
+  "submitCase.back-to-home": "Go Back to Homepage",
+  "home.login": "Login"
 }

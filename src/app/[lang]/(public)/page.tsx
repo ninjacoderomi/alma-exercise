@@ -1,14 +1,23 @@
-import Button  from '@/app/components/Button';
-import { useTranslation } from '../../../../get-dictionary';
-import LoginButton from './components/LoginButton.client';
-import { Locale } from '../../../../i18n-config';
+import Button from "@/app/components/Button";
+import { loadTranslations } from "../../../../get-dictionary";
+import LoginButton from "./components/LoginButton.client";
+import { Locale } from "../../../../i18n-config";
 
-export default async function Home({ params }: { params: Promise<{ lang: Locale }> }) {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}) {
   const { lang } = await params;
-  const t = await useTranslation(lang);
+  const t = await loadTranslations(lang);
   return (
-    <div className='flex flex-row justify-center items-center h-screen gap-4'>
-      <Button variant="contained" color="primary" title={t('submitCase.title')} href="/submit-case" />
+    <div className="flex flex-row justify-center items-center h-screen gap-4">
+      <Button
+        variant="contained"
+        color="primary"
+        title={t("submitCase.title")}
+        href="/submit-case"
+      />
       <LoginButton />
     </div>
   );

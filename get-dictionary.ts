@@ -12,7 +12,7 @@ const dictionaries = {
 export const getDictionary = async (locale: Locale) =>
   dictionaries[locale]?.() ?? dictionaries.en();
 
-export const useTranslation = async (locale: Locale) => {
+export const loadTranslations = async (locale: Locale) => {
   const dictionary = await getDictionary(locale);
   console.log(locale);
   return (key: string) => dictionary[key] ?? key;
