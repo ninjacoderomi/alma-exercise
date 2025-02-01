@@ -12,11 +12,7 @@
    ```sh
    npm install
    ```
-
-3. **Set up environment variables:**
-   copy the .env.local file provided in the mail to root directory
-
-4. **Run the project:**
+3. **Run the project:**
    ```sh
    npm dev
    ```
